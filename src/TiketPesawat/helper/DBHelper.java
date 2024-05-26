@@ -3,7 +3,6 @@ package TiketPesawat.helper;
 import java.sql.*;
 import java.util.*;
 import TiketPesawat.model.*;
-import javax.swing.JOptionPane;
 
 public class DBHelper {
     private String dbUrl = "jdbc:mysql://localhost/projek_akhir_pbo";
@@ -193,6 +192,76 @@ public class DBHelper {
     public boolean updateDataPesawat(String kode, String pesawat) {
         boolean value = false;
         query = "UPDATE pesawat SET kodePesawat = '" + kode + "', pesawat = '" + pesawat + "' WHERE kodePesawat= '" + kode + "'";
+        try {
+            stmt = conn.createStatement();
+            if (stmt.executeUpdate(query) > 0) {
+                value = true;
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+    
+//    --- Jadwal Feature ---
+    public List<JadwalModel> getAllJadwal() {
+        query = "SELECT * FROM jadwal";
+        List<JadwalModel> list = new ArrayList<JadwalModel>();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                JadwalModel data = new JadwalModel();
+                data.setKodeJadwal(rs.getString("kodeJadwal"));
+                data.setKodePesawat(rs.getString("id_Pesawat"));
+                data.setKotaAwal(rs.getString("kota_awal"));
+                data.setKotaTujuan(rs.getString("kota_tujuan"));
+                data.setJamKeberangkatan(rs.getString("jamKeberangkatan"));
+                data.setJamKedatangan(rs.getString("jamKedatangan"));
+                data.setHarga(rs.getString("harga"));
+                list.add(data);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public boolean insertDataJadwal(String kode, String pesawat, String kotaAwal, String kotaTujuan, String jamKeb, String jamKed, String harga) {
+        boolean value = false;
+        query = "INSERT INTO `jadwal` (`kodeJadwal`, `jamKeberangkatan`, `jamKedatangan`, `harga`, `id_pesawat`, `kota_awal`, `kota_tujuan`) VALUES ('"+kode+"', '"+jamKeb+"', '"+jamKed+"', '"+harga+"', '"+pesawat+"', '"+kotaAwal+"', '"+kotaTujuan+"')";
+        try {
+            stmt = conn.createStatement();
+            if (stmt.executeUpdate(query) > 0) {
+                value = true;
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+
+    public boolean deleteDataJadwal(String kode) {
+        boolean value = false;
+        query = "DELETE FROM jadwal WHERE kodeJadwal=\"" + kode + "\"";
+        try {
+            stmt = conn.createStatement();
+            if (stmt.executeUpdate(query) > 0) {
+                value = true;
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+
+    public boolean updateDataJadwal(String kode, String pesawat, String kotaAwal, String kotaTujuan, String jamKeb, String jamKed, String harga) {
+        boolean value = false;
+        query = "UPDATE `jadwal` SET `kodeJadwal` = '"+kode+"', `jamKeberangkatan` = '"+jamKeb+"', `jamKedatangan` = '"+jamKed+"', `harga` = '"+harga+"', `id_pesawat` = '"+pesawat+"', `kota_awal` = '"+kotaAwal+"',`kota_tujuan` = '"+kotaTujuan+"'  WHERE `kodeJadwal` = '"+kode+"';";
         try {
             stmt = conn.createStatement();
             if (stmt.executeUpdate(query) > 0) {

@@ -75,10 +75,10 @@
                                               </Group>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                   <Component id="harga" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jamKedatangan" max="32767" attributes="0"/>
                                                   <Component id="jamKeberangkatan" alignment="1" max="32767" attributes="0"/>
                                                   <Component id="kotaTujuan" alignment="1" pref="135" max="32767" attributes="0"/>
                                                   <Component id="kotaAwal" max="32767" attributes="0"/>
+                                                  <Component id="jamKedatangan" alignment="0" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -142,7 +142,7 @@
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jamKedatangan" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="harga" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -162,7 +162,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="kembaliBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="8" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -189,11 +189,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jamKeberangkatan">
-    </Component>
-    <Component class="javax.swing.JTextField" name="jamKedatangan">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jamKedatanganActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -271,16 +266,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ubah"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ubahBtnMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="tambahBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tambah"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tambahBtnMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="cleatBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Clear"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cleatBtnMouseClicked"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
@@ -300,6 +304,9 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jadwalTabelMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -307,6 +314,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Hapus"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="hapusBtnMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="kembaliBtn">
       <Properties>
@@ -315,6 +325,8 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="kembaliBtnMouseClicked"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jamKedatangan">
     </Component>
   </SubComponents>
 </Form>

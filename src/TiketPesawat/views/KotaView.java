@@ -225,9 +225,7 @@ public class KotaView extends javax.swing.JFrame {
         kodeKota.setText("");
         kota.setText("");
     }//GEN-LAST:event_hapusBtnMouseClicked
-
-
-    
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearBtn;
