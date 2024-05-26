@@ -1,20 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package TiketPesawat.views;
 
-/**
- *
- * @author user
- */
+import TiketPesawat.controller.MasukController;
+
 public class MasukView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LoginView
-     */
-    public MasukView() {
+    MasukController mc;
+    public MasukView(MasukController c) {
         initComponents();
+        this.mc = c;
     }
 
     @SuppressWarnings("unchecked")
@@ -40,10 +33,25 @@ public class MasukView extends javax.swing.JFrame {
         jLabel3.setText("Password");
 
         daftarBtn.setText("Daftar");
+        daftarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                daftarBtnMouseClicked(evt);
+            }
+        });
 
         masukBtn.setText("Masuk");
+        masukBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                masukBtnMouseClicked(evt);
+            }
+        });
 
         keluarBtn.setText("Keluar");
+        keluarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                keluarBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,6 +104,22 @@ public class MasukView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void keluarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keluarBtnMouseClicked
+        // TODO add your handling code here:
+        mc.hilangPage();
+    }//GEN-LAST:event_keluarBtnMouseClicked
+
+    private void masukBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_masukBtnMouseClicked
+        // TODO add your handling code here:
+        // nanti ada logika 
+        mc.keAdmin();
+    }//GEN-LAST:event_masukBtnMouseClicked
+
+    private void daftarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daftarBtnMouseClicked
+        // TODO add your handling code here:
+        mc.keDaftar();
+    }//GEN-LAST:event_daftarBtnMouseClicked
 
 
 

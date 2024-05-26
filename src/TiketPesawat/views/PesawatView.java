@@ -1,20 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package TiketPesawat.views;
 
-/**
- *
- * @author user
- */
+import TiketPesawat.controller.PesawatController;
+
+
 public class PesawatView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PesawatView
-     */
-    public PesawatView() {
+    PesawatController pc;
+    public PesawatView(PesawatController c) {
         initComponents();
+        this.pc = c;
     }
 
     /**
@@ -44,6 +38,11 @@ public class PesawatView extends javax.swing.JFrame {
         setBackground(new java.awt.Color(204, 204, 204));
 
         kembaliBtn.setText("Kembali");
+        kembaliBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kembaliBtnMouseClicked(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(234, 234, 234));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -152,6 +151,11 @@ public class PesawatView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kembaliBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliBtnMouseClicked
+        // TODO add your handling code here:
+        pc.keAdmin();
+    }//GEN-LAST:event_kembaliBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

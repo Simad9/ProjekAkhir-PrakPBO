@@ -152,11 +152,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Daftar"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="daftarBtnMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="kembaliBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Kembali"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="kembaliBtnMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

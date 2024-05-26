@@ -4,17 +4,18 @@
  */
 package TiketPesawat.views;
 
+import TiketPesawat.controller.AdminController;
+
 /**
  *
  * @author user
  */
 public class AdminView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AdminView
-     */
-    public AdminView() {
+    AdminController ac;
+    public AdminView(AdminController c) {
         initComponents();
+        this.ac = c;
     }
 
     /**
@@ -42,12 +43,32 @@ public class AdminView extends javax.swing.JFrame {
         jLabel2.setText("Hallo, Siapa");
 
         kotaBtn.setText("Kota");
+        kotaBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kotaBtnMouseClicked(evt);
+            }
+        });
 
         jadwalBtn.setText("Jadwal Penerbangan");
+        jadwalBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jadwalBtnMouseClicked(evt);
+            }
+        });
 
         pesawatBtn.setText("Pesawat");
+        pesawatBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pesawatBtnMouseClicked(evt);
+            }
+        });
 
         keluarBtn.setText("Keluar");
+        keluarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                keluarBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,6 +112,26 @@ public class AdminView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kotaBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kotaBtnMouseClicked
+        // TODO add your handling code here:
+        ac.keKota();
+    }//GEN-LAST:event_kotaBtnMouseClicked
+
+    private void pesawatBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesawatBtnMouseClicked
+        // TODO add your handling code here:
+        ac.kePesawat();
+    }//GEN-LAST:event_pesawatBtnMouseClicked
+
+    private void jadwalBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadwalBtnMouseClicked
+        // TODO add your handling code here:
+        ac.keJadwal();
+    }//GEN-LAST:event_jadwalBtnMouseClicked
+
+    private void keluarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keluarBtnMouseClicked
+        // TODO add your handling code here:
+        ac.hilangPage();
+    }//GEN-LAST:event_keluarBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

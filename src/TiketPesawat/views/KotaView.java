@@ -4,17 +4,18 @@
  */
 package TiketPesawat.views;
 
+import TiketPesawat.controller.KotaController;
+
 /**
  *
  * @author user
  */
 public class KotaView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form KotaView
-     */
-    public KotaView() {
+    KotaController kc;
+    public KotaView(KotaController c) {
         initComponents();
+        this.kc = c;
     }
 
     /**
@@ -111,6 +112,11 @@ public class KotaView extends javax.swing.JFrame {
         hapusBtn.setText("Hapus");
 
         kembaliBtn.setText("Kembali");
+        kembaliBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kembaliBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,6 +163,11 @@ public class KotaView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kembaliBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliBtnMouseClicked
+        // TODO add your handling code here:
+        kc.keAdmin();
+    }//GEN-LAST:event_kembaliBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

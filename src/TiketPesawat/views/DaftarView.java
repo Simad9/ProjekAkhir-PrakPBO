@@ -4,17 +4,18 @@
  */
 package TiketPesawat.views;
 
+import TiketPesawat.controller.DaftarController;
+
 /**
  *
  * @author user
  */
 public class DaftarView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form SignUpView
-     */
-    public DaftarView() {
+    DaftarController dc;
+    public DaftarView(DaftarController c) {
         initComponents();
+        this.dc = c;
     }
 
     /**
@@ -54,8 +55,18 @@ public class DaftarView extends javax.swing.JFrame {
         jLabel6.setText("Password");
 
         daftarBtn.setText("Daftar");
+        daftarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                daftarBtnMouseClicked(evt);
+            }
+        });
 
         kembaliBtn.setText("Kembali");
+        kembaliBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kembaliBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,6 +138,17 @@ public class DaftarView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void daftarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daftarBtnMouseClicked
+        // TODO add your handling code here:
+        //        Nanti ada logicnya
+         dc.keMasuk();
+    }//GEN-LAST:event_daftarBtnMouseClicked
+
+    private void kembaliBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliBtnMouseClicked
+        // TODO add your handling code here:
+        dc.keMasuk();
+    }//GEN-LAST:event_kembaliBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
