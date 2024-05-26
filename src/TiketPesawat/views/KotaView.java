@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package TiketPesawat.views;
 
 import TiketPesawat.controller.KotaController;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
-/**
- *
- * @author user
- */
 public class KotaView extends javax.swing.JFrame {
 
     KotaController kc;
@@ -91,10 +85,25 @@ public class KotaView extends javax.swing.JFrame {
         );
 
         ubahBtn.setText("Ubah");
+        ubahBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ubahBtnMouseClicked(evt);
+            }
+        });
 
         tambahBtn.setText("Tambah");
+        tambahBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tambahBtnMouseClicked(evt);
+            }
+        });
 
         clearBtn.setText("Clear");
+        clearBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clearBtnMouseClicked(evt);
+            }
+        });
 
         kotaTabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,9 +116,19 @@ public class KotaView extends javax.swing.JFrame {
                 "Title 1", "Title 2"
             }
         ));
+        kotaTabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kotaTabelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(kotaTabel);
 
         hapusBtn.setText("Hapus");
+        hapusBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hapusBtnMouseClicked(evt);
+            }
+        });
 
         kembaliBtn.setText("Kembali");
         kembaliBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -169,6 +188,50 @@ public class KotaView extends javax.swing.JFrame {
         kc.keAdmin();
     }//GEN-LAST:event_kembaliBtnMouseClicked
 
+    private void clearBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearBtnMouseClicked
+        // TODO add your handling code here:
+        kodeKota.setText("");
+        kota.setText("");
+    }//GEN-LAST:event_clearBtnMouseClicked
+
+
+//    Funtion CRUD
+    private void kotaTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kotaTabelMouseClicked
+        // TODO add your handling code here:
+        int row = kotaTabel.getSelectedRow();
+        kodeKota.setText(kotaTabel.getModel().getValueAt(row, 0).toString());
+        kota.setText(kotaTabel.getModel().getValueAt(row, 1).toString());
+    }//GEN-LAST:event_kotaTabelMouseClicked
+
+    private void tambahBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tambahBtnMouseClicked
+        // TODO add your handling code here:
+        kc.addData(kodeKota.getText(), kota.getText());
+        JOptionPane.showMessageDialog(null, "Data berhasil!");
+        kodeKota.setText("");
+        kota.setText("");
+    }//GEN-LAST:event_tambahBtnMouseClicked
+
+    private void ubahBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ubahBtnMouseClicked
+        // TODO add your handling code here:
+        int row = kotaTabel.getSelectedRow();
+        kc.updateData(row, kodeKota.getText(), kota.getText());
+        JOptionPane.showMessageDialog(null, "Data Diubah!");
+        kodeKota.setText("");
+        kota.setText("");
+    }//GEN-LAST:event_ubahBtnMouseClicked
+
+    private void hapusBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusBtnMouseClicked
+        // TODO add your handling code here:
+        int row = kotaTabel.getSelectedRow();
+        System.out.println("row " + row);
+        kc.hapusData(row);
+        JOptionPane.showMessageDialog(null, "Data Dihapus!");
+        kodeKota.setText("");
+        kota.setText("");
+    }//GEN-LAST:event_hapusBtnMouseClicked
+
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearBtn;
@@ -185,4 +248,8 @@ public class KotaView extends javax.swing.JFrame {
     private javax.swing.JButton tambahBtn;
     private javax.swing.JButton ubahBtn;
     // End of variables declaration//GEN-END:variables
+
+    public JTable getKotaTabel(){
+        return kotaTabel;
+    }
 }
