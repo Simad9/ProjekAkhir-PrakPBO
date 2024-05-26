@@ -7,7 +7,7 @@ public class App {
 //     new PesanController();
 
 // biar gak lama
-     new KotaController();
-//     new PesawatController();
+//     new KotaController();
+     new PesawatController();
   }
 }

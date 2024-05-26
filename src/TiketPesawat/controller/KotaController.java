@@ -5,6 +5,7 @@ import TiketPesawat.model.KotaModel;
 import TiketPesawat.views.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class KotaController {
   KotaView view;
@@ -36,12 +37,17 @@ public class KotaController {
   
 //  Metohde buat yang CRUD -- inti feature
    public void addData(String kode, String kota){
+       if (kode.isEmpty() && kota.isEmpty()) {
+           JOptionPane.showMessageDialog(null, "Isi datanya pak!");
+       }else{
         DBHelper helper = new DBHelper();
         if(helper.insertDataKota(kode, kota)){
+           JOptionPane.showMessageDialog(null, "Data berhasil!");
             refreshTable();
         }else{
-            System.out.println("Gagal buat data baru");
+            JOptionPane.showMessageDialog(null, "Kode gak boleh sama!");
         }   
+       }
     }
     
     public void updateData(int row, String kode, String kota){
@@ -49,6 +55,7 @@ public class KotaController {
         if(row != -1){
             DBHelper helper = new DBHelper();
             if(helper.updateDataKota(kode, kota)){
+                JOptionPane.showMessageDialog(null, "Data Diubah!");
                 refreshTable();
             }
         }else{
@@ -61,6 +68,7 @@ public class KotaController {
         if(row != -1){
             DBHelper helper = new DBHelper();
             if(helper.deleteDataKota(kode)){
+                JOptionPane.showMessageDialog(null, "Data Dihapus!");
                 refreshTable();
             }
         }else{

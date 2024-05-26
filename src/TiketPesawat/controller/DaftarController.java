@@ -33,7 +33,7 @@ public class DaftarController {
       mc.tampilPage();
       view.setVisible(false);
     } else {
-      JOptionPane.showMessageDialog(null, "Gagal daftar euy!");
+      JOptionPane.showMessageDialog(null, "Username sudah dipake!");
     }
   }
 

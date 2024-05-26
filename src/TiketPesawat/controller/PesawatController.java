@@ -1,15 +1,28 @@
 package TiketPesawat.controller;
 
+import TiketPesawat.helper.DBHelper;
+import TiketPesawat.model.PesawatModel;
 import TiketPesawat.views.*;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class PesawatController {
     PesawatView view;
     
 //    Dekler Controller
     AdminController ac;
+    
+    //  buat tabel
+  private DefaultTableModel model;
 
     public PesawatController() {
+         String [] kolom = {"Kode", "Maskapai"};
+      model = new DefaultTableModel(kolom, 0);
+      refreshTable();
+      
         view = new PesawatView(this);
+         view.getPesawatTabel().setModel(model);
         view.setVisible(true);
         view.setLocationRelativeTo(null);
     }
@@ -22,6 +35,61 @@ public class PesawatController {
         view.setVisible(false);
     }
 
+    //  Metohde buat yang CRUD -- inti feature
+   public void addData(String kode, String pesawat){
+       if (kode.isEmpty() && pesawat.isEmpty()) {
+           JOptionPane.showMessageDialog(null, "Isi datanya pak!");
+       }else{
+        DBHelper helper = new DBHelper();
+        if(helper.insertDataPesawat(kode, pesawat)){
+           JOptionPane.showMessageDialog(null, "Data berhasil!");
+            refreshTable();
+        }else{
+            JOptionPane.showMessageDialog(null, "Kode gak boleh sama!");
+        }   
+        }
+    }
+    
+    public void updateData(int row, String kode, String pesawat){
+        String id = model.getValueAt(row, 0).toString();
+        if(row != -1){
+            DBHelper helper = new DBHelper();
+            if(helper.updateDataPesawat(id, pesawat)){
+                JOptionPane.showMessageDialog(null, "Data Diubah!");
+                refreshTable();
+            }
+        }else{
+            System.out.println("Tidak ada data");
+        }
+    }
+    
+    public void hapusData(int row){
+        String kode = model.getValueAt(row, 0).toString();
+        if(row != -1){
+            DBHelper helper = new DBHelper();
+            if(helper.deleteDataPesawat(kode)){
+                JOptionPane.showMessageDialog(null, "Data Dihapus!");
+                refreshTable();
+            }
+        }else{
+            System.out.println("Tidak ada data");
+        }
+    }
+  
+
+//  Methode buat refresh tablenya
+   private void refreshTable(){
+        model.setRowCount(0);
+        DBHelper helper = new DBHelper();
+        List<PesawatModel> data = helper.getAllPesawat();
+        for(PesawatModel m : data){
+            // nambah baris - dalamnya array
+            model.addRow(new Object[]{m.getKodePesawat(), m.getPesawat()});
+        }
+    }
+    
+    
+//    metode buat pindah halaman
     public void keAdmin() {
         ac = new AdminController();
         ac.tampilPage();

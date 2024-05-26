@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2024 at 08:40 PM
+-- Generation Time: May 26, 2024 at 10:34 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -55,7 +55,8 @@ CREATE TABLE `kota` (
 
 INSERT INTO `kota` (`id_kota`, `kodeKota`, `kota`) VALUES
 (1, 'KT01', 'Jogja'),
-(2, 'KT02', 'Jakarta');
+(2, 'KT02', 'Jakarta'),
+(3, 'KT03', 'Semarang');
 
 -- --------------------------------------------------------
 
@@ -110,7 +111,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `nama`, `email`, `username`, `password`) VALUES
-(1, 'test', 'test@gmail.com', '123', '123');
+(1, 'test', 'test@gmail.com', '123', '123'),
+(2, 'wijdan', 'wijdan@gmail.com', '321', '321'),
+(4, 'kuro', 'kuro', '1234', '1234'),
+(5, 'shiro', 'shirio@gmail.com', '12345', '12345'),
+(12, '123', '123', '098', '098');
 
 --
 -- Indexes for dumped tables
@@ -129,7 +134,8 @@ ALTER TABLE `jadwal`
 -- Indexes for table `kota`
 --
 ALTER TABLE `kota`
-  ADD PRIMARY KEY (`id_kota`);
+  ADD PRIMARY KEY (`id_kota`),
+  ADD UNIQUE KEY `kodeKota` (`kodeKota`);
 
 --
 -- Indexes for table `pemesanan`
@@ -143,13 +149,15 @@ ALTER TABLE `pemesanan`
 -- Indexes for table `pesawat`
 --
 ALTER TABLE `pesawat`
-  ADD PRIMARY KEY (`id_pesawat`);
+  ADD PRIMARY KEY (`id_pesawat`),
+  ADD UNIQUE KEY `kodePesawat` (`kodePesawat`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_user`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -165,7 +173,7 @@ ALTER TABLE `jadwal`
 -- AUTO_INCREMENT for table `kota`
 --
 ALTER TABLE `kota`
-  MODIFY `id_kota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pemesanan`
@@ -183,7 +191,7 @@ ALTER TABLE `pesawat`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

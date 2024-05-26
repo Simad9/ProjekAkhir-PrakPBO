@@ -206,7 +206,6 @@ public class KotaView extends javax.swing.JFrame {
     private void tambahBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tambahBtnMouseClicked
         // TODO add your handling code here:
         kc.addData(kodeKota.getText(), kota.getText());
-        JOptionPane.showMessageDialog(null, "Data berhasil!");
         kodeKota.setText("");
         kota.setText("");
     }//GEN-LAST:event_tambahBtnMouseClicked
@@ -215,7 +214,6 @@ public class KotaView extends javax.swing.JFrame {
         // TODO add your handling code here:
         int row = kotaTabel.getSelectedRow();
         kc.updateData(row, kodeKota.getText(), kota.getText());
-        JOptionPane.showMessageDialog(null, "Data Diubah!");
         kodeKota.setText("");
         kota.setText("");
     }//GEN-LAST:event_ubahBtnMouseClicked
@@ -223,9 +221,7 @@ public class KotaView extends javax.swing.JFrame {
     private void hapusBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusBtnMouseClicked
         // TODO add your handling code here:
         int row = kotaTabel.getSelectedRow();
-        System.out.println("row " + row);
-        kc.hapusData(row);
-        JOptionPane.showMessageDialog(null, "Data Dihapus!");
+        kc.hapusData(row);        
         kodeKota.setText("");
         kota.setText("");
     }//GEN-LAST:event_hapusBtnMouseClicked

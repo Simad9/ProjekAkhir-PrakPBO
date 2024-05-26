@@ -1,6 +1,7 @@
 package TiketPesawat.views;
 
 import TiketPesawat.controller.PesawatController;
+import javax.swing.JTable;
 
 
 public class PesawatView extends javax.swing.JFrame {
@@ -101,15 +102,40 @@ public class PesawatView extends javax.swing.JFrame {
                 "Title 1", "Title 2"
             }
         ));
+        pesawatTabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pesawatTabelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(pesawatTabel);
 
         ubahBtn.setText("Ubah");
+        ubahBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ubahBtnMouseClicked(evt);
+            }
+        });
 
         tambahBtn.setText("Tambah");
+        tambahBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tambahBtnMouseClicked(evt);
+            }
+        });
 
         clearBtn.setText("Clear");
+        clearBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clearBtnMouseClicked(evt);
+            }
+        });
 
         hapusBtn.setText("Hapus");
+        hapusBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hapusBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,6 +183,44 @@ public class PesawatView extends javax.swing.JFrame {
         pc.keAdmin();
     }//GEN-LAST:event_kembaliBtnMouseClicked
 
+    private void clearBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearBtnMouseClicked
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        kodePesawat.setText("");
+        pesawat.setText("");
+    }//GEN-LAST:event_clearBtnMouseClicked
+
+    private void tambahBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tambahBtnMouseClicked
+        // TODO add your handling code here:
+        pc.addData(kodePesawat.getText(), pesawat.getText());
+        kodePesawat.setText("");
+        pesawat.setText("");
+    }//GEN-LAST:event_tambahBtnMouseClicked
+
+    private void ubahBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ubahBtnMouseClicked
+        // TODO add your handling code here:
+        int row = pesawatTabel.getSelectedRow();
+        System.out.println("row " + row);
+        pc.updateData(row, kodePesawat.getText(), pesawat.getText());        
+        kodePesawat.setText("");
+        pesawat.setText("");
+    }//GEN-LAST:event_ubahBtnMouseClicked
+
+    private void hapusBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusBtnMouseClicked
+        // TODO add your handling code here:
+        int row = pesawatTabel.getSelectedRow();
+        pc.hapusData(row);        
+        kodePesawat.setText("");
+        pesawat.setText("");
+    }//GEN-LAST:event_hapusBtnMouseClicked
+
+    private void pesawatTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesawatTabelMouseClicked
+        // TODO add your handling code here:
+        int row = pesawatTabel.getSelectedRow();
+        kodePesawat.setText(pesawatTabel.getModel().getValueAt(row, 0).toString());
+        pesawat.setText(pesawatTabel.getModel().getValueAt(row, 1).toString());
+    }//GEN-LAST:event_pesawatTabelMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearBtn;
@@ -173,4 +237,8 @@ public class PesawatView extends javax.swing.JFrame {
     private javax.swing.JButton tambahBtn;
     private javax.swing.JButton ubahBtn;
     // End of variables declaration//GEN-END:variables
+
+ public JTable getPesawatTabel(){
+        return pesawatTabel;
+    }
 }

@@ -3,6 +3,7 @@ package TiketPesawat.helper;
 import java.sql.*;
 import java.util.*;
 import TiketPesawat.model.*;
+import javax.swing.JOptionPane;
 
 public class DBHelper {
     private String dbUrl = "jdbc:mysql://localhost/projek_akhir_pbo";
@@ -93,10 +94,10 @@ public class DBHelper {
         }
         return list;
     }
-    
-    public boolean insertDataKota(String kode, String kota){
+
+    public boolean insertDataKota(String kode, String kota) {
         boolean value = false;
-        query = "INSERT INTO `kota` (`kodeKota`, `kota`) VALUES ('"+kode+"', '"+kota+"');";
+        query = "INSERT INTO `kota` (`kodeKota`, `kota`) VALUES ('" + kode + "', '" + kota + "');";
         try {
             stmt = conn.createStatement();
             if (stmt.executeUpdate(query) > 0) {
@@ -108,8 +109,8 @@ public class DBHelper {
         }
         return value;
     }
-    
-        public boolean deleteDataKota(String kode){
+
+    public boolean deleteDataKota(String kode) {
         boolean value = false;
         query = "DELETE FROM kota WHERE kodeKota =\"" + kode + "\"";
         try {
@@ -123,10 +124,75 @@ public class DBHelper {
         }
         return value;
     }
-        
-        public boolean updateDataKota(String kode, String kota){
+
+    public boolean updateDataKota(String kode, String kota) {
         boolean value = false;
         query = "UPDATE kota SET kodeKota = '" + kode + "', kota = '" + kota + "' WHERE kodeKota = '" + kode + "'";
+        try {
+            stmt = conn.createStatement();
+            if (stmt.executeUpdate(query) > 0) {
+                value = true;
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+    
+    // -- Pesawat Feature ---
+    public List<PesawatModel> getAllPesawat() {
+        query = "SELECT * FROM pesawat";
+        List<PesawatModel> list = new ArrayList<PesawatModel>();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                PesawatModel data = new PesawatModel();
+                data.setKodePesawat(rs.getString("kodePesawat"));
+                data.setPesawat(rs.getString("pesawat"));
+                list.add(data);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public boolean insertDataPesawat(String kode, String pesawat) {
+        boolean value = false;
+        query = "INSERT INTO `pesawat` (`kodePesawat`, `pesawat`) VALUES ('" + kode + "', '" + pesawat + "');";
+        try {
+            stmt = conn.createStatement();
+            if (stmt.executeUpdate(query) > 0) {
+                value = true;
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+
+    public boolean deleteDataPesawat(String kode) {
+        boolean value = false;
+        query = "DELETE FROM pesawat WHERE kodePesawat =\"" + kode + "\"";
+        try {
+            stmt = conn.createStatement();
+            if (stmt.executeUpdate(query) > 0) {
+                value = true;
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+
+    public boolean updateDataPesawat(String kode, String pesawat) {
+        boolean value = false;
+        query = "UPDATE pesawat SET kodePesawat = '" + kode + "', pesawat = '" + pesawat + "' WHERE kodePesawat= '" + kode + "'";
         try {
             stmt = conn.createStatement();
             if (stmt.executeUpdate(query) > 0) {
