@@ -141,8 +141,7 @@ public class DaftarView extends javax.swing.JFrame {
 
     private void daftarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daftarBtnMouseClicked
         // TODO add your handling code here:
-        //        Nanti ada logicnya
-         dc.keMasuk();
+         dc.daftarUser(nama.getText(), email.getText(), username.getText(), password.getText());
     }//GEN-LAST:event_daftarBtnMouseClicked
 
     private void kembaliBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliBtnMouseClicked

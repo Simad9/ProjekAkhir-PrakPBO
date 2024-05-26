@@ -113,7 +113,7 @@ public class MasukView extends javax.swing.JFrame {
     private void masukBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_masukBtnMouseClicked
         // TODO add your handling code here:
         // nanti ada logika 
-        mc.keAdmin();
+        mc.cekLogin(username.getText(), password.getText());
     }//GEN-LAST:event_masukBtnMouseClicked
 
     private void daftarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daftarBtnMouseClicked

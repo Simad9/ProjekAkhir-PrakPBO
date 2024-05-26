@@ -25,7 +25,12 @@ public class AdminController {
     view.setVisible(false);
   }
   
-//  Method tambahan
+//  methode buat ganti label
+  public void ambilNama(String nama){
+      view.ubahLabel(nama);
+  }
+  
+//  Method buat pindah halaman
   public void keKota() {
     kc = new KotaController();
     kc.tampilPage();

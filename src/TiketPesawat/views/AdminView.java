@@ -28,7 +28,7 @@ public class AdminView extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        sapaan = new javax.swing.JLabel();
         kotaBtn = new javax.swing.JButton();
         jadwalBtn = new javax.swing.JButton();
         pesawatBtn = new javax.swing.JButton();
@@ -39,8 +39,8 @@ public class AdminView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("Halaman Admin");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Hallo, Siapa");
+        sapaan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        sapaan.setText("Hallo, Siapa");
 
         kotaBtn.setText("Kota");
         kotaBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -85,7 +85,7 @@ public class AdminView extends javax.swing.JFrame {
                                     .addComponent(kotaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(pesawatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel2)
+                                .addComponent(sapaan)
                                 .addComponent(jadwalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
@@ -98,7 +98,7 @@ public class AdminView extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(sapaan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(kotaBtn)
@@ -113,6 +113,7 @@ public class AdminView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+   //   Tombol pindah halaman
     private void kotaBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kotaBtnMouseClicked
         // TODO add your handling code here:
         ac.keKota();
@@ -136,10 +137,15 @@ public class AdminView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jadwalBtn;
     private javax.swing.JButton keluarBtn;
     private javax.swing.JButton kotaBtn;
     private javax.swing.JButton pesawatBtn;
+    private javax.swing.JLabel sapaan;
     // End of variables declaration//GEN-END:variables
+
+//    Ganti text label
+    public void ubahLabel(String nama){
+        sapaan.setText("Hallo, "+nama+"");
+    }
 }

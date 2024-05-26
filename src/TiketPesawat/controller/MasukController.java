@@ -1,6 +1,8 @@
 package TiketPesawat.controller;
 
+import TiketPesawat.helper.DBHelper;
 import TiketPesawat.views.*;
+import javax.swing.JOptionPane;
 
 public class MasukController {
   // Deklar view
@@ -24,7 +26,23 @@ public class MasukController {
     view.setVisible(false);
   }
 
-//  Method tambahan
+  // Method fitur
+  public void cekLogin(String username, String pass) {
+    DBHelper helper = new DBHelper();
+    if (helper.cekLogin(username, pass)) {
+      JOptionPane.showMessageDialog(null, "Login Berhasil euy!");
+      ac = new AdminController();
+      ac.tampilPage();
+      String nama = helper.ambilNama(username, pass);
+      ac.ambilNama(nama);
+      view.setVisible(false);
+
+    } else {
+      JOptionPane.showMessageDialog(null, "Username atau Password salah euy!");
+    }
+  }
+
+  // Metohod buat pindah halaman
   public void keAdmin() {
     ac = new AdminController();
     ac.tampilPage();
@@ -36,6 +54,5 @@ public class MasukController {
     dc.tampilPage();
     view.setVisible(false);
   }
-  
 
 }

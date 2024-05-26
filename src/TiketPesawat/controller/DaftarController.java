@@ -1,11 +1,13 @@
 package TiketPesawat.controller;
 
+import TiketPesawat.helper.DBHelper;
 import TiketPesawat.views.*;
+import javax.swing.JOptionPane;
 
 public class DaftarController {
   DaftarView view;
-  
-// Deklar Controller 
+
+  // Deklar Controller
   MasukController mc;
 
   public DaftarController() {
@@ -18,14 +20,27 @@ public class DaftarController {
     view.setVisible(true);
   }
 
-  public void hilangPage(){
+  public void hilangPage() {
     view.setVisible(false);
-}
-  
-//    method tambahan
-    public void keMasuk() {
-        mc = new MasukController();
-        mc.tampilPage();
-        view.setVisible(false);
+  }
+
+  // Methode buat feature
+  public void daftarUser(String nama, String email, String username, String password) {
+    DBHelper helper = new DBHelper();
+    if (helper.daftarUser(nama, email, username, password)) {
+      JOptionPane.showMessageDialog(null, "Akun Terdaftar!");
+      mc = new MasukController();
+      mc.tampilPage();
+      view.setVisible(false);
+    } else {
+      JOptionPane.showMessageDialog(null, "Gagal daftar euy!");
     }
+  }
+
+  // method buat pindah halaman
+  public void keMasuk() {
+    mc = new MasukController();
+    mc.tampilPage();
+    view.setVisible(false);
+  }
 }
