@@ -1,6 +1,6 @@
 package TiketPesawat.controller;
 
-import TiketPesawat.helper.DBHelper;
+import TiketPesawat.helper.*;
 import TiketPesawat.model.PesawatModel;
 import TiketPesawat.views.*;
 import java.util.List;
@@ -40,7 +40,7 @@ public class PesawatController {
        if (kode.isEmpty() && pesawat.isEmpty()) {
            JOptionPane.showMessageDialog(null, "Isi datanya pak!");
        }else{
-        DBHelper helper = new DBHelper();
+        DBPesawat helper = new DBPesawat();
         if(helper.insertDataPesawat(kode, pesawat)){
            JOptionPane.showMessageDialog(null, "Data berhasil!");
             refreshTable();
@@ -53,7 +53,7 @@ public class PesawatController {
     public void updateData(int row, String kode, String pesawat){
         String id = model.getValueAt(row, 0).toString();
         if(row != -1){
-            DBHelper helper = new DBHelper();
+            DBPesawat helper = new DBPesawat();
             if(helper.updateDataPesawat(id, pesawat)){
                 JOptionPane.showMessageDialog(null, "Data Diubah!");
                 refreshTable();
@@ -66,7 +66,7 @@ public class PesawatController {
     public void hapusData(int row){
         String kode = model.getValueAt(row, 0).toString();
         if(row != -1){
-            DBHelper helper = new DBHelper();
+            DBPesawat helper = new DBPesawat();
             if(helper.deleteDataPesawat(kode)){
                 JOptionPane.showMessageDialog(null, "Data Dihapus!");
                 refreshTable();
@@ -80,7 +80,7 @@ public class PesawatController {
 //  Methode buat refresh tablenya
    private void refreshTable(){
         model.setRowCount(0);
-        DBHelper helper = new DBHelper();
+        DBPesawat helper = new DBPesawat();
         List<PesawatModel> data = helper.getAllPesawat();
         for(PesawatModel m : data){
             // nambah baris - dalamnya array

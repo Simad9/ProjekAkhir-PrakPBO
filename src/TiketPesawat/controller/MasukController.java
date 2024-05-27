@@ -1,6 +1,6 @@
 package TiketPesawat.controller;
 
-import TiketPesawat.helper.DBHelper;
+import TiketPesawat.helper.*;
 import TiketPesawat.views.*;
 import javax.swing.JOptionPane;
 
@@ -28,7 +28,7 @@ public class MasukController {
 
   // Method fitur
   public void cekLogin(String username, String pass) {
-    DBHelper helper = new DBHelper();
+    DBAuth helper = new DBAuth();
     if (helper.cekLogin(username, pass)) {
       JOptionPane.showMessageDialog(null, "Login Berhasil euy!");
       ac = new AdminController();

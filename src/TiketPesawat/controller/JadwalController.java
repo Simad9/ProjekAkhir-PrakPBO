@@ -1,8 +1,7 @@
 package TiketPesawat.controller;
 
-import TiketPesawat.helper.DBHelper;
+import TiketPesawat.helper.*;
 import TiketPesawat.model.JadwalModel;
-import TiketPesawat.model.KotaModel;
 import TiketPesawat.views.*;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -38,46 +37,62 @@ public class JadwalController {
   
   //  Metohde buat yang CRUD -- inti feature
     public void addData(String kode, String pesawat, String kotaAwal, String kotaTujuan, String jamKeb, String jamKed, String harga){
-      
-        DBHelper helper = new DBHelper();
-        if(helper.insertDataJadwal(kode, pesawat, kotaAwal, kotaTujuan, jamKeb, jamKed, harga)){
-           JOptionPane.showMessageDialog(null, "Data berhasil!");
-            refreshTable();
-        }else{
-            JOptionPane.showMessageDialog(null, "Kode gak boleh sama!");
-        }   
-   
-    }
+        DBJadwal helper = new DBJadwal();
+        String kodePesawat = pesawat.substring(0, 4);
+        String kodeKotaAwal = kotaAwal.substring(0, 4);
+        String kodeKotaTujuan = kotaTujuan.substring(0, 4);
+        
+        if (kodeKotaAwal.equals(kodeKotaTujuan)) {
+            JOptionPane.showMessageDialog(null, "Tempat asal dan tujuan tidak boleh sama!");
+        } else {
+            boolean isDataInserted = helper.insertDataJadwal(
+            kode, kodePesawat, kodeKotaAwal, kodeKotaTujuan, jamKeb, jamKed, harga
+            );
     
-    /**
-     *
-     * @param row
-     * @param kode
-     * @param pesawat
-     * @param kotaAwal
-     * @param kotaTujuan
-     * @param jamKeb
-     * @param jamKed
-     * @param harga
-     */
-    public void updateData(int row, String kode, String pesawat, String kotaAwal, String kotaTujuan, String jamKeb, String jamKed, String harga){
-        String id = model.getValueAt(row, 0).toString();
-        if(row != -1){
-            DBHelper helper = new DBHelper();
-            if(helper.updateDataJadwal(kode, pesawat, kotaAwal, kotaTujuan, jamKeb, jamKed, harga)){
-                JOptionPane.showMessageDialog(null, "Data Diubah!");
+            if (isDataInserted) {
+                JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");
                 refreshTable();
             } else {
+                JOptionPane.showMessageDialog(null, "Kode tidak boleh sama!");
             }
-        }else{
-            System.out.println("Tidak ada data");
         }
-    }
+   }
     
+ public void updateData(int row, String kode, String pesawat, String kotaAwal, String kotaTujuan, String jamKeb, String jamKed, String harga) {
+    // Ekstrak kode dari pesawat, kota awal, dan kota tujuan
+    String kodePesawat = pesawat.substring(0, 4);
+    String kodeKotaAwal = kotaAwal.substring(0, 4);
+    String kodeKotaTujuan = kotaTujuan.substring(0, 4);
+    
+    // Pastikan row yang dipilih valid
+    if (row != -1) {
+        String id = model.getValueAt(row, 0).toString();
+        DBJadwal helper = new DBJadwal();
+        
+        // Periksa apakah kota awal dan kota tujuan berbeda
+        if (kodeKotaAwal.equals(kodeKotaTujuan)) {
+            JOptionPane.showMessageDialog(null, "Tempat asal dan tujuan tidak boleh sama!");
+        } else {
+            // Perbarui data jadwal
+            boolean isDataUpdated = helper.updateDataJadwal(
+                    kode, kodePesawat, kodeKotaAwal, kodeKotaTujuan, jamKeb, jamKed, harga);
+    
+            if (isDataUpdated) {
+                JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
+                refreshTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Gagal mengubah data!");
+            }
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Tidak ada baris yang dipilih!");
+    }
+}
+
     public void hapusData(int row){
         String kode = model.getValueAt(row, 0).toString();
         if(row != -1){
-            DBHelper helper = new DBHelper();
+            DBJadwal helper = new DBJadwal();
             if(helper.deleteDataJadwal(kode)){
                 JOptionPane.showMessageDialog(null, "Data Dihapus!");
                 refreshTable();
@@ -91,16 +106,15 @@ public class JadwalController {
 //  Methode buat refresh tablenya
    private void refreshTable(){
         model.setRowCount(0);
-        DBHelper helper = new DBHelper();
+        DBJadwal helper = new DBJadwal();
         List<JadwalModel> data = helper.getAllJadwal();
         for(JadwalModel m : data){
             // nambah baris - dalamnya array
-            
             model.addRow(new Object[]{
                 m.getKodeJadwal(), 
                 m.getKodePesawat(),
-                m.getKotaAwal(),
-                m.getKotaTujuan(),
+                m.getKodeKotaAwal(),
+                m.getKodeKotaTujuan(),
                 m.getJamKeberangkatan(),
                 m.getJamKedatangan(),
                 m.getHarga()
@@ -114,5 +128,20 @@ public class JadwalController {
     ac.tampilPage();
     view.setVisible(false);
   }
+  
+  public List loadDataPesawat(){
+      DBJadwal helper = new DBJadwal();
+      List<JadwalModel> data = helper.getDataPesawat();
+      return data;
+  }
+  
+  public List loadDataKota(){
+      DBJadwal helper = new DBJadwal();
+      List<JadwalModel> data = helper.getDataKota();
+      return data;
+  }
+  
+
+
 
 }

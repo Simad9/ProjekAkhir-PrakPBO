@@ -1,6 +1,6 @@
 package TiketPesawat.controller;
 
-import TiketPesawat.helper.DBHelper;
+import TiketPesawat.helper.*;
 import TiketPesawat.views.*;
 import javax.swing.JOptionPane;
 
@@ -26,7 +26,7 @@ public class DaftarController {
 
   // Methode buat feature
   public void daftarUser(String nama, String email, String username, String password) {
-    DBHelper helper = new DBHelper();
+    DBAuth helper = new DBAuth();
     if (helper.daftarUser(nama, email, username, password)) {
       JOptionPane.showMessageDialog(null, "Akun Terdaftar!");
       mc = new MasukController();

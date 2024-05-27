@@ -1,6 +1,6 @@
 package TiketPesawat.controller;
 
-import TiketPesawat.helper.DBHelper;
+import TiketPesawat.helper.*;
 import TiketPesawat.model.KotaModel;
 import TiketPesawat.views.*;
 import javax.swing.table.DefaultTableModel;
@@ -40,7 +40,7 @@ public class KotaController {
        if (kode.isEmpty() && kota.isEmpty()) {
            JOptionPane.showMessageDialog(null, "Isi datanya pak!");
        }else{
-        DBHelper helper = new DBHelper();
+        DBKota helper = new DBKota();
         if(helper.insertDataKota(kode, kota)){
            JOptionPane.showMessageDialog(null, "Data berhasil!");
             refreshTable();
@@ -53,7 +53,7 @@ public class KotaController {
     public void updateData(int row, String kode, String kota){
         String id = model.getValueAt(row, 1).toString();
         if(row != -1){
-            DBHelper helper = new DBHelper();
+            DBKota helper = new DBKota();
             if(helper.updateDataKota(kode, kota)){
                 JOptionPane.showMessageDialog(null, "Data Diubah!");
                 refreshTable();
@@ -66,7 +66,7 @@ public class KotaController {
     public void hapusData(int row){
         String kode = model.getValueAt(row, 0).toString();
         if(row != -1){
-            DBHelper helper = new DBHelper();
+            DBKota helper = new DBKota();
             if(helper.deleteDataKota(kode)){
                 JOptionPane.showMessageDialog(null, "Data Dihapus!");
                 refreshTable();
@@ -80,7 +80,7 @@ public class KotaController {
 //  Methode buat refresh tablenya
    private void refreshTable(){
         model.setRowCount(0);
-        DBHelper helper = new DBHelper();
+        DBKota helper = new DBKota();
         List<KotaModel> data = helper.getAllKota();
         for(KotaModel m : data){
             // nambah baris - dalamnya array

@@ -3,11 +3,39 @@ package TiketPesawat.model;
 public class JadwalModel {
     private String kodeJadwal = "";
     private String kodePesawat = "";
+    private String pesawat = "";
+    private String kodeKotaAwal = "";
     private String kotaAwal = "";
+    private String kodeKotaTujuan = "";
     private String kotaTujuan = "";
     private String jamKeberangkatan = "";
     private String jamKedatangan = "";
     private String harga = "";
+
+    public String getPesawat() {
+        return pesawat;
+    }
+
+    public void setPesawat(String pesawat) {
+        this.pesawat = pesawat;
+    }
+
+    public String getKodeKotaAwal() {
+        return kodeKotaAwal;
+    }
+
+    public void setKodeKotaAwal(String kodeKotaAwal) {
+        this.kodeKotaAwal = kodeKotaAwal;
+    }
+
+    public String getKodeKotaTujuan() {
+        return kodeKotaTujuan;
+    }
+
+    public void setKodeKotaTujuan(String kodeKotaTujuan) {
+        this.kodeKotaTujuan = kodeKotaTujuan;
+    }
+
 
     public String getKodeJadwal() {
         return kodeJadwal;
@@ -65,6 +93,24 @@ public class JadwalModel {
         this.harga = harga;
     }
     
+    private String kodeKota = "";
+    private String kota = "";
+
+    public String getKodeKota() {
+        return kodeKota;
+    }
+
+    public void setKodeKota(String kodeKota) {
+        this.kodeKota = kodeKota;
+    }
+
+    public String getKota() {
+        return kota;
+    }
+
+    public void setKota(String kota) {
+        this.kota = kota;
+    }
     
     
 }

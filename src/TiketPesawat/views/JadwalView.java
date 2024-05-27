@@ -1,16 +1,23 @@
 package TiketPesawat.views;
 
 import TiketPesawat.controller.JadwalController;
-import java.awt.event.ActionEvent;
+import TiketPesawat.helper.DBJadwal;
+import TiketPesawat.model.JadwalModel;
+import java.awt.*;
+import java.sql.*;
 import javax.swing.JTable;
 
 public class JadwalView extends javax.swing.JFrame {
-
     JadwalController jc;
 
     public JadwalView(JadwalController c) {
         initComponents();
         this.jc = c;
+         kodeMaskapai.removeAllItems();
+         kotaAwal.removeAllItems();
+         kotaTujuan.removeAllItems();         
+         loadDataPesawat();
+         loadDataKota();
     }
 
     /**
@@ -242,34 +249,90 @@ public class JadwalView extends javax.swing.JFrame {
     private void cleatBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cleatBtnMouseClicked
         // TODO add your handling code here:
         kodeJadwal.setText("");
-        harga.setText("");;
-        jamKeberangkatan.setText("");;
-        jamKedatangan.setText("");;
+        harga.setText("");
+        jamKeberangkatan.setText("");
+        jamKedatangan.setText("");
+        kodeJadwal.setEnabled(true);
     }//GEN-LAST:event_cleatBtnMouseClicked
 
     private void tambahBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tambahBtnMouseClicked
         // TODO add your handling code here:
+        String pesawat = String.valueOf(kodeMaskapai.getSelectedItem());
+        String kotaawal = String.valueOf(kotaAwal.getSelectedItem());
+        String kotatujuan = String.valueOf(kotaTujuan.getSelectedItem());
+         
+        jc.addData(
+                kodeJadwal.getText(), 
+                pesawat,
+                kotaawal,
+                kotatujuan,
+                jamKeberangkatan.getText(),
+                jamKedatangan.getText(),
+                harga.getText()
+        );
     }//GEN-LAST:event_tambahBtnMouseClicked
 
     private void ubahBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ubahBtnMouseClicked
         // TODO add your handling code here:
+        int row = jadwalTabel.getSelectedRow();
+        String pesawat = String.valueOf(kodeMaskapai.getSelectedItem());
+        String kotaawal = String.valueOf(kotaAwal.getSelectedItem());
+        String kotatujuan = String.valueOf(kotaTujuan.getSelectedItem());
+        
+        jc.updateData(
+                row,
+                kodeJadwal.getText(), 
+                pesawat,
+                kotaawal,
+                kotatujuan,
+                jamKeberangkatan.getText(),
+                jamKedatangan.getText(),
+                harga.getText()
+        );
     }//GEN-LAST:event_ubahBtnMouseClicked
 
     private void hapusBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusBtnMouseClicked
         // TODO add your handling code here:
+        int row = jadwalTabel.getSelectedRow();
+        jc.hapusData(row); 
     }//GEN-LAST:event_hapusBtnMouseClicked
 
     private void jadwalTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadwalTabelMouseClicked
         // TODO add your handling code here:
         int row = jadwalTabel.getSelectedRow();
-        kodeJadwal.setText(jadwalTabel.getModel().getValueAt(row, 0).toString());
-//        kodeMaskapai.setText(jadwalTabel.getModel().getValueAt(row, 0).toString());
-//kotaAwal.setText(jadwalTabel.getModel().getValueAt(row, 0).toString());
-//kotaTujuan..setText(jadwalTabel.getModel().getValueAt(row, 0).toString());
-
-        harga.setText(jadwalTabel.getModel().getValueAt(row, 1).toString());
-        jamKeberangkatan.setText(jadwalTabel.getModel().getValueAt(row, 1).toString());
-        jamKedatangan.setText(jadwalTabel.getModel().getValueAt(row, 1).toString());
+        String a = jadwalTabel.getValueAt(row, 0).toString();
+        String b = jadwalTabel.getValueAt(row, 1).toString();
+        String c = jadwalTabel.getValueAt(row, 2).toString();
+        String d = jadwalTabel.getValueAt(row, 3).toString();
+        String e = jadwalTabel.getValueAt(row, 4).toString();
+        String f = jadwalTabel.getValueAt(row, 5).toString();
+        String g = jadwalTabel.getValueAt(row, 6).toString();
+        kodeJadwal.setText(a);
+        kodeJadwal.setEnabled(false);
+        for (int i = 0; i < kodeMaskapai.getWidth(); i++) {
+            String z = kodeMaskapai.getItemAt(i);
+            if (z.substring(0,4).equals(b)) {
+                kodeMaskapai.setSelectedIndex(i);
+                break;
+            }
+        }
+        for (int i = 0; i < kotaAwal.getItemCount(); i++) {
+        String z = kotaAwal.getItemAt(i);
+        if (z != null && z.length() >= 4 && z.substring(0, 4).equals(c)) {
+            kotaAwal.setSelectedIndex(i);
+            break;
+        }
+    }
+        for (int i = 0; i < kotaTujuan.getItemCount(); i++) {
+        String z = kotaTujuan.getItemAt(i);
+        if (z != null && z.length() >= 4 && z.substring(0, 4).equals(d)) {
+            kotaTujuan.setSelectedIndex(i);
+            break;
+        }
+    }
+        jamKeberangkatan.setText(e);
+        jamKedatangan.setText(f);
+        harga.setText(g);
     }//GEN-LAST:event_jadwalTabelMouseClicked
 
     // Methode yang dipakai
@@ -277,6 +340,9 @@ public class JadwalView extends javax.swing.JFrame {
         // TODO add your handling code here:
         jc.keAdmin();
     }// GEN-LAST:event_kembaliBtnMouseClicked
+    
+//    tambahan sendiri
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cleatBtn;
@@ -305,7 +371,26 @@ public class JadwalView extends javax.swing.JFrame {
     private javax.swing.JButton ubahBtn;
     // End of variables declaration//GEN-END:variables
 
- public JTable getJadwalTabel(){
+    public JTable getJadwalTabel(){
         return jadwalTabel;
     }
+
+    private void loadDataPesawat() {
+        java.util.List<JadwalModel> dataPesawat = jc.loadDataPesawat();
+            for(JadwalModel m1 : dataPesawat){
+              kodeMaskapai.addItem(m1.getKodePesawat() + " - " + m1.getPesawat());
+            };
+    }
+    
+    private void loadDataKota() {
+        java.util.List<JadwalModel> dataKota = jc.loadDataKota();
+             for(JadwalModel m2 : dataKota){
+                kotaAwal.addItem(m2.getKodeKota() + " - " + m2.getKota());
+                 kotaTujuan.addItem(m2.getKodeKota() + " - " + m2.getKota());
+            };
+    }
+    
+        
+     
 }
+
