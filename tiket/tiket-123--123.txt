@@ -1,0 +1,21 @@
+==========   Misal ini   =============
+========== Tiket Pesawat =============
++ Data Diri Anda : +
+NIK          = 123
+Nama         = 123
+Nomer HP     = 12
+Jumlah Kursi = 1
+------------------------------------
++ Data Pesawat : +
+Kode Jadwal         = JD01
+Maskapai            = Garuda Indonesia
+Dari Kota           = Jogja
+Menuju Kota         = Jakarta
+Jam Keberangkatan   = 10:00:00
+Jam Sampai          = 12:00:00
+Harga satu tiket    = 50000
+------------------------------------
+Total Harga = 50000
+------------------------------------
+        SEMOGA SAMPAI TUJUAN        
+======================================

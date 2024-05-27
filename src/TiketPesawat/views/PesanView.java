@@ -1,6 +1,9 @@
 package TiketPesawat.views;
 
 import TiketPesawat.controller.PesanController;
+import TiketPesawat.model.*;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 public class PesanView extends javax.swing.JFrame {
 
@@ -8,6 +11,9 @@ public class PesanView extends javax.swing.JFrame {
     public PesanView(PesanController c) {
         initComponents();
         this.pc = c;
+        kotaAwal.removeAllItems();
+        kotaTujuan.removeAllItems();         
+        loadDataKota();
     }
 
     /**
@@ -42,7 +48,7 @@ public class PesanView extends javax.swing.JFrame {
         jumlah = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        kodeJadwal1 = new javax.swing.JTextField();
+        totalHarga = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +78,11 @@ public class PesanView extends javax.swing.JFrame {
         kotaTujuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cekBtn.setText("Cek Jadwal Penerbangan");
+        cekBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cekBtnMouseClicked(evt);
+            }
+        });
 
         pesananTabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,19 +95,31 @@ public class PesanView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        pesananTabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pesananTabelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(pesananTabel);
 
         jLabel8.setText("Misal : Bayar (Rp)");
 
         jLabel9.setText("Kode Jadwal");
 
+        kodeJadwal.setEditable(false);
+
         cetakBtn.setText("Cetak Tiket Penerbangan");
+        cetakBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cetakBtnMouseClicked(evt);
+            }
+        });
 
         jLabel7.setText("Jumlah Kursi");
 
         jLabel10.setText("Total Harga");
 
-        kodeJadwal1.setEditable(false);
+        totalHarga.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,7 +137,7 @@ public class PesanView extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(bayar)
                             .addComponent(kodeJadwal, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                            .addComponent(kodeJadwal1, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
+                            .addComponent(totalHarga, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
                         .addGap(94, 94, 94))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +216,7 @@ public class PesanView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(kodeJadwal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(totalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -210,6 +233,44 @@ public class PesanView extends javax.swing.JFrame {
         // TODO add your handling code here:
         pc.keMasuk();
     }//GEN-LAST:event_adminBtnMouseClicked
+
+    private void cekBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cekBtnMouseClicked
+        // TODO add your handling code here:
+        String kotaawal = String.valueOf(kotaAwal.getSelectedItem());
+        String kotatujuan = String.valueOf(kotaTujuan.getSelectedItem());
+        pc.cekJadwal(kotaawal,kotatujuan);
+    }//GEN-LAST:event_cekBtnMouseClicked
+
+    private void pesananTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesananTabelMouseClicked
+        // TODO add your handling code here:
+        if (jumlah.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Kursinya diisi dulu pak, kami kasih 0 dulu!");
+            jumlah.setText("0");
+        }
+        int row = pesananTabel.getSelectedRow();
+        kodeJadwal.setText(pesananTabel.getModel().getValueAt(row, 0).toString());
+
+        String hargaTiket = pesananTabel.getModel().getValueAt(row, 6).toString();
+        String jumlahKursi = jumlah.getText();
+
+        String totalHargaStr = pc.hitungHarga(jumlahKursi, hargaTiket);
+        totalHarga.setText(totalHargaStr);
+    }//GEN-LAST:event_pesananTabelMouseClicked
+
+    private void cetakBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakBtnMouseClicked
+        // TODO add your handling code here:
+        String nikOrang = nik.getText();
+        String namaOrang = nama.getText();
+        String nohp = noHp.getText();
+        String jumlahKursi = jumlah.getText();
+        String kodejadwal = kodeJadwal.getText();
+        String totalHargaTiket = totalHarga.getText();
+        String uang = bayar.getText();
+        Orang orang = new Orang(nikOrang, namaOrang, nohp, 
+                jumlahKursi, totalHargaTiket, uang, kodejadwal);
+
+          pc.pembayaranDanCetak(orang);
+    }//GEN-LAST:event_cetakBtnMouseClicked
 
 
 
@@ -231,12 +292,24 @@ public class PesanView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jumlah;
     private javax.swing.JTextField kodeJadwal;
-    private javax.swing.JTextField kodeJadwal1;
     private javax.swing.JComboBox<String> kotaAwal;
     private javax.swing.JComboBox<String> kotaTujuan;
     private javax.swing.JTextField nama;
     private javax.swing.JTextField nik;
     private javax.swing.JTextField noHp;
     private javax.swing.JTable pesananTabel;
+    private javax.swing.JTextField totalHarga;
     // End of variables declaration//GEN-END:variables
+
+    public JTable getPesananTabel(){
+        return pesananTabel;
+    }
+    
+    private void loadDataKota() {
+         java.util.List<PesanModel> dataKota = pc.loadDataKota();
+             for(PesanModel m2 : dataKota){
+                kotaAwal.addItem(m2.getKodeKota() + " - " + m2.getKota());
+                kotaTujuan.addItem(m2.getKodeKota() + " - " + m2.getKota());
+            };
+    }
 }

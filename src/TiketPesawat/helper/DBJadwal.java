@@ -86,7 +86,7 @@ stmt = conn.createStatement();
     }
 
     public boolean insertDataJadwal(String kode, String pesawat, String kotaAwal, String kotaTujuan, String jamKeb,
-            String jamKed, String harga) {
+        String jamKed, String harga) {
         boolean value = false;
         query = "INSERT INTO `jadwal` (`kodeJadwal`, `jamKeberangkatan`, `jamKedatangan`, `harga`, `kodePesawat`, `kodeKotaAwal`, `kodeKotaTujuan`) VALUES ('"
                 + kode + "', '" + jamKeb + "', '" + jamKed + "', '" + harga + "', '" + pesawat + "', '" + kotaAwal

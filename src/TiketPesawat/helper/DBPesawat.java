@@ -3,8 +3,9 @@ package TiketPesawat.helper;
 import java.sql.*;
 import java.util.*;
 import TiketPesawat.model.*;
+
 public class DBPesawat {
-     private String dbUrl = "jdbc:mysql://localhost/projek_akhir_pbo";
+    private String dbUrl = "jdbc:mysql://localhost/projek_akhir_pbo";
     private String user = "root";
     private String pass = "";
 
@@ -20,7 +21,7 @@ public class DBPesawat {
             e.printStackTrace();
         }
     }
-    
+
     // -- Pesawat Feature ---
     public List<PesawatModel> getAllPesawat() {
         query = "SELECT * FROM pesawat";
@@ -86,5 +87,5 @@ public class DBPesawat {
         }
         return value;
     }
-    
+
 }

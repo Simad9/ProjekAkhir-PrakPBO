@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2024 at 10:34 PM
+-- Generation Time: May 27, 2024 at 11:06 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -29,13 +29,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `jadwal` (
   `id_jadwal` int(11) NOT NULL,
+  `kodeJadwal` varchar(10) NOT NULL,
   `jamKeberangkatan` varchar(15) NOT NULL,
   `jamKedatangan` varchar(15) NOT NULL,
   `harga` varchar(20) NOT NULL,
-  `id_pesawat` int(11) NOT NULL,
-  `kota_awal` int(11) NOT NULL,
-  `kota_tujuan` int(11) NOT NULL
+  `kodePesawat` varchar(10) NOT NULL,
+  `kodeKotaAwal` varchar(10) NOT NULL,
+  `kodeKotaTujuan` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `jadwal`
+--
+
+INSERT INTO `jadwal` (`id_jadwal`, `kodeJadwal`, `jamKeberangkatan`, `jamKedatangan`, `harga`, `kodePesawat`, `kodeKotaAwal`, `kodeKotaTujuan`) VALUES
+(2, 'JD01', '10:00:00', '12:00:00', '50000', 'PW01', 'KT01', 'KT02'),
+(4, 'JD03', '09:00', '12:00', '1', 'PW01', 'KT03', 'KT02'),
+(8, 'JD04', '20:00', '21:00', '200', 'PW02', 'KT01', 'KT03');
 
 -- --------------------------------------------------------
 
@@ -90,7 +100,8 @@ CREATE TABLE `pesawat` (
 --
 
 INSERT INTO `pesawat` (`id_pesawat`, `kodePesawat`, `pesawat`) VALUES
-(1, 'PW01', 'Garuda Indonesia');
+(1, 'PW01', 'Garuda Indonesia'),
+(2, 'PW02', 'Terbang jaya');
 
 -- --------------------------------------------------------
 
@@ -126,9 +137,9 @@ INSERT INTO `users` (`id_user`, `nama`, `email`, `username`, `password`) VALUES
 --
 ALTER TABLE `jadwal`
   ADD PRIMARY KEY (`id_jadwal`),
-  ADD KEY `id_pesawat` (`id_pesawat`),
-  ADD KEY `kota_awal` (`kota_awal`),
-  ADD KEY `kota_tujuan` (`kota_tujuan`);
+  ADD KEY `pesawatJadwal` (`kodePesawat`),
+  ADD KEY `kotaAwalJadwal` (`kodeKotaAwal`),
+  ADD KEY `kotaTujuanJadwal` (`kodeKotaTujuan`);
 
 --
 -- Indexes for table `kota`
@@ -167,7 +178,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `kota`
@@ -185,7 +196,7 @@ ALTER TABLE `pemesanan`
 -- AUTO_INCREMENT for table `pesawat`
 --
 ALTER TABLE `pesawat`
-  MODIFY `id_pesawat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pesawat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -201,9 +212,9 @@ ALTER TABLE `users`
 -- Constraints for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  ADD CONSTRAINT `id_pesawat` FOREIGN KEY (`id_pesawat`) REFERENCES `pesawat` (`id_pesawat`),
-  ADD CONSTRAINT `kota_awal` FOREIGN KEY (`kota_awal`) REFERENCES `kota` (`id_kota`),
-  ADD CONSTRAINT `kota_tujuan` FOREIGN KEY (`kota_tujuan`) REFERENCES `kota` (`id_kota`);
+  ADD CONSTRAINT `kotaAwalJadwal` FOREIGN KEY (`kodeKotaAwal`) REFERENCES `kota` (`kodeKota`),
+  ADD CONSTRAINT `kotaTujuanJadwal` FOREIGN KEY (`kodeKotaTujuan`) REFERENCES `kota` (`kodeKota`),
+  ADD CONSTRAINT `pesawatJadwal` FOREIGN KEY (`kodePesawat`) REFERENCES `pesawat` (`kodePesawat`);
 
 --
 -- Constraints for table `pemesanan`

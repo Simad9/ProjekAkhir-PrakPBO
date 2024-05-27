@@ -1,0 +1,8 @@
+========== Tiket Pesawat ===========
+Data Diri Anda : 
+NIK          = 123
+Nama         = wijdan
+Nomer HP     = 210
+Jumlah Kursi = 1
+Karcis jangan sampai hilang/Rusak
+===================================
