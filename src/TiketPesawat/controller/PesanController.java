@@ -96,20 +96,26 @@ public class PesanController {
             return String.valueOf(total);
     }
 
-    public void pembayaranDanCetak(Orang orang) {
-        if(orang.nama.isEmpty()){
-             JOptionPane.showMessageDialog(null, "Minimal isi data pak!");
-        }else{
-            int totalhargatiket = Integer.parseInt(orang.totalHarga);
-            int uangCustomer = Integer.parseInt(orang.uang);
-
-            if(totalhargatiket <= uangCustomer){
-               printTiket(orang);
-            }else{
-                JOptionPane.showMessageDialog(null, "Uangnya kurang pak!");
-            }
-        }
+public void pembayaranDanCetak(Orang orang) {
+    if (orang.nama.isEmpty() || orang.totalHarga.isEmpty() || orang.uang.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Semua kolom harus diisi!");
+        return;
     }
+
+    // Pengecekan numerik
+    try {
+        int totalHargaTiket = Integer.parseInt(orang.totalHarga);
+        int uangCustomer = Integer.parseInt(orang.uang);
+
+        if (totalHargaTiket <= uangCustomer) {
+            printTiket(orang);
+        } else {
+            JOptionPane.showMessageDialog(null, "Uangnya kurang pak!");
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Tipe Uang harus berupa angka Manis!");
+    }
+}
     
     //    BUAT CETAK TIKETNYA
     public static void printTiket(Orang orang) {

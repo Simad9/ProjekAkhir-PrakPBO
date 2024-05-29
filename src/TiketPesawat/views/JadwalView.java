@@ -8,16 +8,17 @@ import java.sql.*;
 import javax.swing.JTable;
 
 public class JadwalView extends javax.swing.JFrame {
+
     JadwalController jc;
 
     public JadwalView(JadwalController c) {
         initComponents();
         this.jc = c;
-         kodeMaskapai.removeAllItems();
-         kotaAwal.removeAllItems();
-         kotaTujuan.removeAllItems();         
-         loadDataPesawat();
-         loadDataKota();
+        kodeMaskapai.removeAllItems();
+        kotaAwal.removeAllItems();
+        kotaTujuan.removeAllItems();
+        loadDataPesawat();
+        loadDataKota();
     }
 
     /**
@@ -140,10 +141,15 @@ public class JadwalView extends javax.swing.JFrame {
             }
         });
 
-        kembaliBtn.setText("Kembali");
+        kembaliBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TiketPesawat/img/daftarView-KembaliBtn.png"))); // NOI18N
         kembaliBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kembaliBtnMouseClicked(evt);
+            }
+        });
+        kembaliBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kembaliBtnActionPerformed(evt);
             }
         });
 
@@ -153,7 +159,7 @@ public class JadwalView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(kembaliBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kembaliBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(20, 20, 20)
@@ -239,8 +245,8 @@ public class JadwalView extends javax.swing.JFrame {
                             .addComponent(hapusBtn)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(kembaliBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(kembaliBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -260,9 +266,9 @@ public class JadwalView extends javax.swing.JFrame {
         String pesawat = String.valueOf(kodeMaskapai.getSelectedItem());
         String kotaawal = String.valueOf(kotaAwal.getSelectedItem());
         String kotatujuan = String.valueOf(kotaTujuan.getSelectedItem());
-         
+
         jc.addData(
-                kodeJadwal.getText(), 
+                kodeJadwal.getText(),
                 pesawat,
                 kotaawal,
                 kotatujuan,
@@ -278,10 +284,10 @@ public class JadwalView extends javax.swing.JFrame {
         String pesawat = String.valueOf(kodeMaskapai.getSelectedItem());
         String kotaawal = String.valueOf(kotaAwal.getSelectedItem());
         String kotatujuan = String.valueOf(kotaTujuan.getSelectedItem());
-        
+
         jc.updateData(
                 row,
-                kodeJadwal.getText(), 
+                kodeJadwal.getText(), // ID Jadwal tetap tidak berubah
                 pesawat,
                 kotaawal,
                 kotatujuan,
@@ -289,12 +295,13 @@ public class JadwalView extends javax.swing.JFrame {
                 jamKedatangan.getText(),
                 harga.getText()
         );
+        kodeJadwal.setEnabled(false); // Pastikan tetap nonaktif
     }//GEN-LAST:event_ubahBtnMouseClicked
 
     private void hapusBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusBtnMouseClicked
         // TODO add your handling code here:
         int row = jadwalTabel.getSelectedRow();
-        jc.hapusData(row); 
+        jc.hapusData(row);
     }//GEN-LAST:event_hapusBtnMouseClicked
 
     private void jadwalTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadwalTabelMouseClicked
@@ -308,41 +315,45 @@ public class JadwalView extends javax.swing.JFrame {
         String f = jadwalTabel.getValueAt(row, 5).toString();
         String g = jadwalTabel.getValueAt(row, 6).toString();
         kodeJadwal.setText(a);
-        kodeJadwal.setEnabled(false);
+        kodeJadwal.setEnabled(false); // Tetap nonaktif
+
         for (int i = 0; i < kodeMaskapai.getWidth(); i++) {
             String z = kodeMaskapai.getItemAt(i);
-            if (z.substring(0,4).equals(b)) {
+            if (z.substring(0, 4).equals(b)) {
                 kodeMaskapai.setSelectedIndex(i);
                 break;
             }
         }
         for (int i = 0; i < kotaAwal.getItemCount(); i++) {
-        String z = kotaAwal.getItemAt(i);
-        if (z != null && z.length() >= 4 && z.substring(0, 4).equals(c)) {
-            kotaAwal.setSelectedIndex(i);
-            break;
+            String z = kotaAwal.getItemAt(i);
+            if (z != null && z.length() >= 4 && z.substring(0, 4).equals(c)) {
+                kotaAwal.setSelectedIndex(i);
+                break;
+            }
         }
-    }
         for (int i = 0; i < kotaTujuan.getItemCount(); i++) {
-        String z = kotaTujuan.getItemAt(i);
-        if (z != null && z.length() >= 4 && z.substring(0, 4).equals(d)) {
-            kotaTujuan.setSelectedIndex(i);
-            break;
+            String z = kotaTujuan.getItemAt(i);
+            if (z != null && z.length() >= 4 && z.substring(0, 4).equals(d)) {
+                kotaTujuan.setSelectedIndex(i);
+                break;
+            }
         }
-    }
         jamKeberangkatan.setText(e);
         jamKedatangan.setText(f);
         harga.setText(g);
     }//GEN-LAST:event_jadwalTabelMouseClicked
+
+    private void kembaliBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kembaliBtnActionPerformed
 
     // Methode yang dipakai
     private void kembaliBtnMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_kembaliBtnMouseClicked
         // TODO add your handling code here:
         jc.keAdmin();
     }// GEN-LAST:event_kembaliBtnMouseClicked
-    
-//    tambahan sendiri
 
+//    tambahan sendiri
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cleatBtn;
@@ -371,26 +382,23 @@ public class JadwalView extends javax.swing.JFrame {
     private javax.swing.JButton ubahBtn;
     // End of variables declaration//GEN-END:variables
 
-    public JTable getJadwalTabel(){
+    public JTable getJadwalTabel() {
         return jadwalTabel;
     }
 
     private void loadDataPesawat() {
         java.util.List<JadwalModel> dataPesawat = jc.loadDataPesawat();
-            for(JadwalModel m1 : dataPesawat){
-              kodeMaskapai.addItem(m1.getKodePesawat() + " - " + m1.getPesawat());
-            };
+        for (JadwalModel m1 : dataPesawat) {
+            kodeMaskapai.addItem(m1.getKodePesawat() + " - " + m1.getPesawat());
+        };
     }
-    
+
     private void loadDataKota() {
         java.util.List<JadwalModel> dataKota = jc.loadDataKota();
-             for(JadwalModel m2 : dataKota){
-                kotaAwal.addItem(m2.getKodeKota() + " - " + m2.getKota());
-                 kotaTujuan.addItem(m2.getKodeKota() + " - " + m2.getKota());
-            };
+        for (JadwalModel m2 : dataKota) {
+            kotaAwal.addItem(m2.getKodeKota() + " - " + m2.getKota());
+            kotaTujuan.addItem(m2.getKodeKota() + " - " + m2.getKota());
+        };
     }
-    
-        
-     
-}
 
+}

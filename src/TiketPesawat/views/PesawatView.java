@@ -1,12 +1,13 @@
 package TiketPesawat.views;
 
 import TiketPesawat.controller.PesawatController;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
-
 
 public class PesawatView extends javax.swing.JFrame {
 
     PesawatController pc;
+
     public PesawatView(PesawatController c) {
         initComponents();
         this.pc = c;
@@ -200,8 +201,12 @@ public class PesawatView extends javax.swing.JFrame {
     private void ubahBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ubahBtnMouseClicked
         // TODO add your handling code here:
         int row = pesawatTabel.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "Tidak ada baris yang dipilih!");
+            return;
+        }
         System.out.println("row " + row);
-        pc.updateData(row, kodePesawat.getText(), pesawat.getText());        
+        pc.updateData(row, kodePesawat.getText(), pesawat.getText());
         kodePesawat.setText("");
         pesawat.setText("");
     }//GEN-LAST:event_ubahBtnMouseClicked
@@ -209,7 +214,7 @@ public class PesawatView extends javax.swing.JFrame {
     private void hapusBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusBtnMouseClicked
         // TODO add your handling code here:
         int row = pesawatTabel.getSelectedRow();
-        pc.hapusData(row);        
+        pc.hapusData(row);
         kodePesawat.setText("");
         pesawat.setText("");
     }//GEN-LAST:event_hapusBtnMouseClicked
@@ -219,6 +224,7 @@ public class PesawatView extends javax.swing.JFrame {
         int row = pesawatTabel.getSelectedRow();
         kodePesawat.setText(pesawatTabel.getModel().getValueAt(row, 0).toString());
         pesawat.setText(pesawatTabel.getModel().getValueAt(row, 1).toString());
+        kodePesawat.setEnabled(false); // Disable the field to prevent modification
     }//GEN-LAST:event_pesawatTabelMouseClicked
 
 
@@ -238,7 +244,7 @@ public class PesawatView extends javax.swing.JFrame {
     private javax.swing.JButton ubahBtn;
     // End of variables declaration//GEN-END:variables
 
- public JTable getPesawatTabel(){
+    public JTable getPesawatTabel() {
         return pesawatTabel;
     }
 }

@@ -36,27 +36,33 @@ public class JadwalController {
   }
   
   //  Metohde buat yang CRUD -- inti feature
-    public void addData(String kode, String pesawat, String kotaAwal, String kotaTujuan, String jamKeb, String jamKed, String harga){
-        DBJadwal helper = new DBJadwal();
-        String kodePesawat = pesawat.substring(0, 4);
-        String kodeKotaAwal = kotaAwal.substring(0, 4);
-        String kodeKotaTujuan = kotaTujuan.substring(0, 4);
-        
-        if (kodeKotaAwal.equals(kodeKotaTujuan)) {
-            JOptionPane.showMessageDialog(null, "Tempat asal dan tujuan tidak boleh sama!");
-        } else {
-            boolean isDataInserted = helper.insertDataJadwal(
-            kode, kodePesawat, kodeKotaAwal, kodeKotaTujuan, jamKeb, jamKed, harga
-            );
+ public void addData(String kode, String pesawat, String kotaAwal, String kotaTujuan, String jamKeb, String jamKed, String harga){
+    // Pengecekan input tidak boleh kosong
+    if (kode.isEmpty() || pesawat.isEmpty() || kotaAwal.isEmpty() || kotaTujuan.isEmpty() || jamKeb.isEmpty() || jamKed.isEmpty() || harga.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Harap mengisis semua inputan yang tersedia!!");
+        return;
+    }
     
-            if (isDataInserted) {
-                JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");
-                refreshTable();
-            } else {
-                JOptionPane.showMessageDialog(null, "Kode tidak boleh sama!");
-            }
+    DBJadwal helper = new DBJadwal();
+    String kodePesawat = pesawat.substring(0, 4);
+    String kodeKotaAwal = kotaAwal.substring(0, 4);
+    String kodeKotaTujuan = kotaTujuan.substring(0, 4);
+
+    if (kodeKotaAwal.equals(kodeKotaTujuan)) {
+        JOptionPane.showMessageDialog(null, "Tempat asal dan tujuan tidak boleh sama!");
+    } else {
+        boolean isDataInserted = helper.insertDataJadwal(
+            kode, kodePesawat, kodeKotaAwal, kodeKotaTujuan, jamKeb, jamKed, harga
+        );
+
+        if (isDataInserted) {
+            JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");
+            refreshTable();
+        } else {
+            JOptionPane.showMessageDialog(null, "Kode tidak boleh sama!");
         }
-   }
+    }
+}
     
  public void updateData(int row, String kode, String pesawat, String kotaAwal, String kotaTujuan, String jamKeb, String jamKed, String harga) {
     // Ekstrak kode dari pesawat, kota awal, dan kota tujuan

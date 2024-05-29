@@ -8,21 +8,22 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PesawatController {
+
     PesawatView view;
-    
+
 //    Dekler Controller
     AdminController ac;
-    
+
     //  buat tabel
-  private DefaultTableModel model;
+    private DefaultTableModel model;
 
     public PesawatController() {
-         String [] kolom = {"Kode", "Maskapai"};
-      model = new DefaultTableModel(kolom, 0);
-      refreshTable();
-      
+        String[] kolom = {"Kode", "Maskapai"};
+        model = new DefaultTableModel(kolom, 0);
+        refreshTable();
+
         view = new PesawatView(this);
-         view.getPesawatTabel().setModel(model);
+        view.getPesawatTabel().setModel(model);
         view.setVisible(true);
         view.setLocationRelativeTo(null);
     }
@@ -36,59 +37,58 @@ public class PesawatController {
     }
 
     //  Metohde buat yang CRUD -- inti feature
-   public void addData(String kode, String pesawat){
-       if (kode.isEmpty() && pesawat.isEmpty()) {
-           JOptionPane.showMessageDialog(null, "Isi datanya pak!");
-       }else{
-        DBPesawat helper = new DBPesawat();
-        if(helper.insertDataPesawat(kode, pesawat)){
-           JOptionPane.showMessageDialog(null, "Data berhasil!");
-            refreshTable();
-        }else{
-            JOptionPane.showMessageDialog(null, "Kode gak boleh sama!");
-        }   
+    public void addData(String kode, String pesawat) {
+        if (kode == null || kode.trim().isEmpty()
+                || pesawat == null || pesawat.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Data harus diisi terlebih dahulu", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            DBPesawat helper = new DBPesawat();
+            if (helper.insertDataPesawat(kode, pesawat)) {
+                JOptionPane.showMessageDialog(null, "Data berhasil!");
+                refreshTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Kode gak boleh sama!");
+            }
         }
     }
-    
-    public void updateData(int row, String kode, String pesawat){
+
+    public void updateData(int row, String kode, String pesawat) {
         String id = model.getValueAt(row, 0).toString();
-        if(row != -1){
+        if (row != -1) {
             DBPesawat helper = new DBPesawat();
-            if(helper.updateDataPesawat(id, pesawat)){
+            if (helper.updateDataPesawat(id, pesawat)) {
                 JOptionPane.showMessageDialog(null, "Data Diubah!");
                 refreshTable();
             }
-        }else{
+        } else {
             System.out.println("Tidak ada data");
         }
     }
-    
-    public void hapusData(int row){
+
+    public void hapusData(int row) {
         String kode = model.getValueAt(row, 0).toString();
-        if(row != -1){
+        if (row != -1) {
             DBPesawat helper = new DBPesawat();
-            if(helper.deleteDataPesawat(kode)){
+            if (helper.deleteDataPesawat(kode)) {
                 JOptionPane.showMessageDialog(null, "Data Dihapus!");
                 refreshTable();
             }
-        }else{
+        } else {
             System.out.println("Tidak ada data");
         }
     }
-  
 
 //  Methode buat refresh tablenya
-   private void refreshTable(){
+    private void refreshTable() {
         model.setRowCount(0);
         DBPesawat helper = new DBPesawat();
         List<PesawatModel> data = helper.getAllPesawat();
-        for(PesawatModel m : data){
+        for (PesawatModel m : data) {
             // nambah baris - dalamnya array
             model.addRow(new Object[]{m.getKodePesawat(), m.getPesawat()});
         }
     }
-    
-    
+
 //    metode buat pindah halaman
     public void keAdmin() {
         ac = new AdminController();

@@ -7,6 +7,7 @@ import javax.swing.JTable;
 public class KotaView extends javax.swing.JFrame {
 
     KotaController kc;
+
     public KotaView(KotaController c) {
         initComponents();
         this.kc = c;
@@ -194,13 +195,13 @@ public class KotaView extends javax.swing.JFrame {
         kota.setText("");
     }//GEN-LAST:event_clearBtnMouseClicked
 
-
 //    Funtion CRUD
     private void kotaTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kotaTabelMouseClicked
         // TODO add your handling code here:
         int row = kotaTabel.getSelectedRow();
         kodeKota.setText(kotaTabel.getModel().getValueAt(row, 0).toString());
         kota.setText(kotaTabel.getModel().getValueAt(row, 1).toString());
+        kodeKota.setEnabled(false); // Disable the field to prevent modification
     }//GEN-LAST:event_kotaTabelMouseClicked
 
     private void tambahBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tambahBtnMouseClicked
@@ -213,19 +214,28 @@ public class KotaView extends javax.swing.JFrame {
     private void ubahBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ubahBtnMouseClicked
         // TODO add your handling code here:
         int row = kotaTabel.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "Tidak ada baris yang dipilih!");
+            return;
+        }
         kc.updateData(row, kodeKota.getText(), kota.getText());
         kodeKota.setText("");
         kota.setText("");
+        kodeKota.setEnabled(true);
     }//GEN-LAST:event_ubahBtnMouseClicked
 
     private void hapusBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusBtnMouseClicked
         // TODO add your handling code here:
         int row = kotaTabel.getSelectedRow();
-        kc.hapusData(row);        
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "Tidak ada baris yang dipilih!");
+            return;
+        }
+        kc.hapusData(row);
         kodeKota.setText("");
         kota.setText("");
     }//GEN-LAST:event_hapusBtnMouseClicked
-  
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearBtn;
@@ -243,7 +253,7 @@ public class KotaView extends javax.swing.JFrame {
     private javax.swing.JButton ubahBtn;
     // End of variables declaration//GEN-END:variables
 
-    public JTable getKotaTabel(){
+    public JTable getKotaTabel() {
         return kotaTabel;
     }
 }
