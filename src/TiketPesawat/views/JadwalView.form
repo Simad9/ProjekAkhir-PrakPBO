@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -47,61 +47,85 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="kembaliBtn" min="-2" pref="144" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel6" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="cleatBtn" min="-2" pref="131" max="-2" attributes="0"/>
+                                  <Component id="ubahBtn" alignment="1" min="-2" pref="131" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="cleatBtn" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="ubahBtn" max="32767" attributes="0"/>
-                                      <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel3" alignment="1" pref="131" max="32767" attributes="0"/>
-                                      <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel9" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jLabel11" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="kodeMaskapai" alignment="0" pref="134" max="32767" attributes="0"/>
-                                                  <Component id="kodeJadwal" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="harga" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jamKeberangkatan" alignment="1" max="32767" attributes="0"/>
-                                                  <Component id="kotaTujuan" alignment="1" pref="135" max="32767" attributes="0"/>
-                                                  <Component id="kotaAwal" max="32767" attributes="0"/>
-                                                  <Component id="jamKedatangan" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="hapusBtn" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                                          <Component id="tambahBtn" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="hapusBtn" min="-2" pref="144" max="-2" attributes="0"/>
-                                              <Component id="tambahBtn" min="-2" pref="144" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="statusKuota" pref="135" max="32767" attributes="0"/>
+                                          <Component id="kursiDiambil" alignment="0" pref="135" max="32767" attributes="0"/>
+                                          <Component id="kursiTersedia" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="30" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jScrollPane2" min="-2" pref="608" max="-2" attributes="0"/>
+                                  <Component id="kembaliBtn" min="-2" pref="268" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                      <Component id="jLabel6" min="-2" pref="131" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabel3" alignment="1" pref="131" max="32767" attributes="0"/>
+                                          <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="kodeMaskapai" alignment="0" pref="134" max="32767" attributes="0"/>
+                                              <Component id="kodeJadwal" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="harga" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jamKeberangkatan" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="kotaTujuan" alignment="1" pref="135" max="32767" attributes="0"/>
+                                              <Component id="kotaAwal" max="32767" attributes="0"/>
+                                              <Component id="jamKedatangan" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace min="-2" pref="302" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="293" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -111,7 +135,7 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -147,22 +171,39 @@
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="harga" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="kursiTersedia" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="kursiDiambil" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="statusKuota" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="10" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="ubahBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tambahBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="cleatBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="hapusBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="kembaliBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="kembaliBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -296,12 +337,75 @@
         <Component class="javax.swing.JTable" name="jadwalTabel">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
+              <Table columnCount="10" rowCount="4">
                 <Column editable="true" title="Title 1" type="java.lang.Object"/>
                 <Column editable="true" title="Title 2" type="java.lang.Object"/>
                 <Column editable="true" title="Title 3" type="java.lang.Object"/>
                 <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                <Column editable="true" title="Title 5" type="java.lang.Object"/>
+                <Column editable="true" title="Title 6" type="java.lang.Object"/>
+                <Column editable="true" title="Title 7" type="java.lang.Object"/>
+                <Column editable="true" title="Title 8" type="java.lang.Object"/>
+                <Column editable="true" title="Title 9" type="java.lang.Object"/>
+                <Column editable="true" title="Title 10" type="java.lang.Object"/>
               </Table>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
           <Events>
@@ -320,13 +424,37 @@
     </Component>
     <Component class="javax.swing.JButton" name="kembaliBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kembali"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/TiketPesawat/img/daftarView-KembaliBtn.png"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="kembaliBtnMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kembaliBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jamKedatangan">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Kursi Yang Tersedia"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="kursiTersedia">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Kursi Yang Telah Diambil"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="statusKuota">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel11">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Status Kuota"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="kursiDiambil">
     </Component>
   </SubComponents>
 </Form>

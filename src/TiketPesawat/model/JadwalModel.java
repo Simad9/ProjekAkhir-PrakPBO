@@ -11,6 +11,9 @@ public class JadwalModel {
     private String jamKeberangkatan = "";
     private String jamKedatangan = "";
     private String harga = "";
+    private String kursiDiambil = "";
+    private String kursiTersedia = "";
+    private String statusKuota = "";
 
     public String getKodeJadwal() {
         return kodeJadwal;
@@ -108,14 +111,30 @@ public class JadwalModel {
         this.kota = kota;
     }
 
+    public String getKursiDiambil() {
+        return kursiDiambil;
+    }
 
-    
+    public void setKursiDiambil(String kursiDiambil) {
+        this.kursiDiambil = kursiDiambil;
+    }
+
+    public String getKursiTersedia() {
+        return kursiTersedia;
+    }
+
+    public void setKursiTersedia(String kursiTersedia) {
+        this.kursiTersedia = kursiTersedia;
+    }
+
+    public String getStatusKuota() {
+        return statusKuota;
+    }
+
+    public void setStatusKuota(String statusKuota) {
+        this.statusKuota = statusKuota;
+    }
+   
     private String kodeKota = "";
     private String kota = "";
-
-
-
-
-    
-    
 }

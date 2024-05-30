@@ -25,17 +25,26 @@ public class DaftarController {
   }
 
   // Methode buat feature
-  public void daftarUser(String nama, String email, String username, String password) {
+public void daftarUser(String nama, String email, String username, String password) {
+    // Validasi input
+    if (nama == null || nama.trim().isEmpty() ||
+        email == null || email.trim().isEmpty() ||
+        username == null || username.trim().isEmpty() ||
+        password == null || password.trim().isEmpty()) {
+        
+        JOptionPane.showMessageDialog(null, "Data harus diisi terlebih dahulu", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
     DBAuth helper = new DBAuth();
     if (helper.daftarUser(nama, email, username, password)) {
-      JOptionPane.showMessageDialog(null, "Akun Terdaftar!");
-      mc = new MasukController();
-      mc.tampilPage();
-      view.setVisible(false);
+        JOptionPane.showMessageDialog(null, "Akun Terdaftar!");
+        mc = new MasukController();
+        mc.tampilPage();
+        view.setVisible(false);
     } else {
-      JOptionPane.showMessageDialog(null, "Username sudah dipake!");
+        JOptionPane.showMessageDialog(null, "Username sudah dipake!", "Error", JOptionPane.ERROR_MESSAGE);
     }
-  }
+}
 
   // method buat pindah halaman
   public void keMasuk() {
