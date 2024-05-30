@@ -189,6 +189,7 @@ public class PesawatView extends javax.swing.JFrame {
         // TODO add your handling code here:
         kodePesawat.setText("");
         pesawat.setText("");
+        kodePesawat.setEnabled(true);
     }//GEN-LAST:event_clearBtnMouseClicked
 
     private void tambahBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tambahBtnMouseClicked

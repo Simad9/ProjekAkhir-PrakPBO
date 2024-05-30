@@ -1,0 +1,21 @@
+==========   Misal ini   =============
+========== Tiket Pesawat =============
++ Data Diri Anda : +
+NIK          = 13098202983
+Nama         = Ageng
+Nomer HP     = 083167229000
+Jumlah Kursi = 90
+------------------------------------
++ Data Pesawat : +
+Kode Jadwal         = JD02
+Maskapai            = Batik
+Dari Kota           = Jogja
+Menuju Kota         = Jakarta
+Jam Keberangkatan   = 10:00
+Jam Sampai          = 12:00
+Harga satu tiket    = 200000
+------------------------------------
+Total Harga = 18000000
+------------------------------------
+        SEMOGA SAMPAI TUJUAN        
+======================================

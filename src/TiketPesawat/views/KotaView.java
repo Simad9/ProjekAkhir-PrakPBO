@@ -193,6 +193,7 @@ public class KotaView extends javax.swing.JFrame {
         // TODO add your handling code here:
         kodeKota.setText("");
         kota.setText("");
+        kodeKota.setEnabled(true);
     }//GEN-LAST:event_clearBtnMouseClicked
 
 //    Funtion CRUD

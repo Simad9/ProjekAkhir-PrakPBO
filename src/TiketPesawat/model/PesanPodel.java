@@ -1,12 +1,40 @@
 package TiketPesawat.model;
 
 public class PesanPodel {
+
     private String nik = "";
     private String namam = "";
     private String noHp = "";
     private String jumlahKursi = "";
     private String kotaAwal = "";
     private String kotaTujuan = "";
+    private String kursiDiambil = "";
+    private String kursiTersedia = "";
+    private String statusKuota = "";
+
+    public String getKursiDiambil() {
+        return kursiDiambil;
+    }
+
+    public void setKursiDiambil(String kursiDiambil) {
+        this.kursiDiambil = kursiDiambil;
+    }
+
+    public String getKursiTersedia() {
+        return kursiTersedia;
+    }
+
+    public void setKursiTersedia(String kursiTersedia) {
+        this.kursiTersedia = kursiTersedia;
+    }
+
+    public String getStatusKuota() {
+        return statusKuota;
+    }
+
+    public void setStatusKuota(String statusKuota) {
+        this.statusKuota = statusKuota;
+    }
 
     public String getNik() {
         return nik;
@@ -55,6 +83,5 @@ public class PesanPodel {
     public void setKotaTujuan(String kotaTujuan) {
         this.kotaTujuan = kotaTujuan;
     }
-    
-    
+
 }
